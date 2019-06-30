@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Victus - Login</title>
+    <link href="~/Content/CSS/login.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
+    @*<script src="~/Content/JS/transition.js"></script>*@
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("body").css("display", "none");
+
+            $("body").fadeIn(2000);
+
+            $("a.transition").click(function (event) {
+                event.preventDefault();
+                linkLocation = this.href;
+                $("body").fadeOut(1000, redirectPage);
+            });
+
+            function redirectPage() {
+                window.location = linkLocation;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="box">
+         <h1> Ingresar </h1>
+         <input type="text" placeholder="Usuario"/>
+         <input type="password" placeholder="Contraseña">
+         <input type="submit" value="Iniciar Sesion">
+    </div>
+</body>
+</html>

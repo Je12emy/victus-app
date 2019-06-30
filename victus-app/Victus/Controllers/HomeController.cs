@@ -9,9 +9,15 @@ namespace Victus.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        // Landing Page
         public ActionResult Index()
         {
             return View();
         }
+        // Login Page
+        public ActionResult Login() {
+            return View();
+        }
+
     }
 }
