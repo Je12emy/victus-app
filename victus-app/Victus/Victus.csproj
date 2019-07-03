@@ -125,7 +125,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\home.css" />
     <Content Include="Content\CSS\login.css" />
+    <Content Include="Content\CSS\registration.css" />
+    <Content Include="Content\CSS\test.css" />
     <Content Include="Content\JS\jquery-3.4.1.min.js" />
+    <Content Include="Content\JS\registration_steps.js" />
     <Content Include="Content\JS\transition.js" />
     <Content Include="Content\Resources\adult-architecture-athlete-221210.jpg" />
     <Content Include="Content\Resources\butternut-squash-close-up-colors-1851468.jpg" />
@@ -140,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +160,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Home\test.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -165,7 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Home\Shared\" />
   </ItemGroup>
   <PropertyGroup>

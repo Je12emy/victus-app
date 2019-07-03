@@ -18,6 +18,17 @@ namespace Victus.Controllers
         public ActionResult Login() {
             return View();
         }
+        // Registrarion Page
+        [HttpGet]
+        public ActionResult Register() {
+            return View();
+        }
+
+        // Submit Info Page
+        public ActionResult TestInfo() {
+            return View();
+
+        }
 
     }
 }

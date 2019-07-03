@@ -1,0 +1,84 @@
+﻿body {
+    background-color: #2c3e50;
+    font-family: sans-serif;
+}
+
+.form_box {
+    opacity: 0.9;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #191919;
+    width: 40%;
+}
+
+    .form_box h1 {
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .form_box input[type = "text"], input[type = "email"], input[type = "password"], select {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 14px 10px;
+        width: 200px;
+        outline: none;
+        border-radius: 24px;
+        transition: 0.25s;
+        color: white;
+    }
+
+    .form_box select {
+        /* Source for this: https://www.proy.info/style-select-dropdown-using-css/ */
+        text-align-last: center !important;
+        display: block;
+        padding: 14px 10px !important;
+        width: 225px !important;
+        max-width: 100%;
+        height: auto !important;
+        background: url("https://i.ibb.co/b7xjLrB/selectbox-arrow.png") right center no-repeat;
+        font-size: 12px;
+        line-height: 16px !important;
+        /* this is must */ -webkit-appearance: none;
+        -moz-appearance: none;
+        text-align: center;
+    }
+
+        .form_box select option {
+            direction:rtl;
+            padding: 0 4px;
+            text-align: center;
+        }
+
+    .form_box input[type = "text"]:focus, input[type = "email"]:focus, input[type = "password"]:focus, select:focus {
+        width: 280px;
+        border-color: #2ecc71;
+    }
+
+    .form_box input[type = "submit"] {
+        /*Source for this: https://www.youtube.com/watch?v=HV7DtH3J2PU */
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 14px 20px;
+        width: 240px;
+        outline: none;
+        border-radius: 24px;
+        transition: 0.25s;
+        color: white;
+        cursor: pointer;
+    }
+
+        .form_box input[type = "submit"]:hover {
+            background: #2ecc71;
+        }
