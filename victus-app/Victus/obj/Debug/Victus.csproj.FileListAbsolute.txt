@@ -44,3 +44,7 @@ C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\bin\System.Web.Mvc
 C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\obj\Debug\Victus.csprojResolveAssemblyReference.cache
 C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\obj\Debug\Victus.dll
 C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\obj\Debug\Victus.pdb
+C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\bin\Capa_Logica.dll
+C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\bin\Capa_Datos.dll
+C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\bin\Capa_Logica.pdb
+C:\Users\Jeremy\Documents\GitHub\victus-app\victus-app\Victus\bin\Capa_Datos.pdb

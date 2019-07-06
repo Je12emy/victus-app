@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Capa_de_Presentacion
+namespace Capa_Datos
 {
-    class acceso_datos
+    public class acceso_datos
     {
         #region Entidad Persona
 
@@ -35,7 +35,6 @@ namespace Capa_de_Presentacion
             SqlCommand sql_command;
 
             sql_command = method.GetCommand();
-            // asd
 
 
             sql_command.CommandText = "SELECT * FROM Persona";
@@ -45,11 +44,12 @@ namespace Capa_de_Presentacion
             return table;
         }
 
-        public int CrearUsuario(string Correo, string cedula, string nombre, string apellido1, string apellido2, string genero, string Contraseña)
+        public int CrearUsuario(string correo, string cedula, string nombre, string apellido1, string apellido2, string genero, string contraseña)
         {
             metodo_datos method = new metodo_datos();
-            int i;
             SqlCommand sql_command;
+
+            int i;
 
             sql_command = method.GetCommand();
 
@@ -60,14 +60,16 @@ namespace Capa_de_Presentacion
             sql_command.Parameters.Add("@Apellido2", SqlDbType.NVarChar);
             sql_command.Parameters.Add("@Genero", SqlDbType.Bit);
             sql_command.Parameters.Add("@Contraseña", SqlDbType.NVarChar);
-            sql_command.CommandText = "INSERT INTO Persona Values(@Correo,@Cedula,@Nombre,@Apellido1,Apeliido2,@Genero,@Contraseña)";
-            sql_command.Parameters[0].Value = Correo;
+
+            sql_command.CommandText = "INSERT INTO Persona Values(@Correo,@Cedula,@Nombre,@Apellido1,@Apellido2,@Genero,@Contraseña)";
+
+            sql_command.Parameters[0].Value = correo;
             sql_command.Parameters[1].Value = cedula;
             sql_command.Parameters[2].Value = nombre;
             sql_command.Parameters[3].Value = apellido1;
             sql_command.Parameters[4].Value = apellido2;
-            sql_command.Parameters[5].Value = genero;
-            sql_command.Parameters[6].Value = Contraseña;
+            sql_command.Parameters[5].Value = Convert.ToInt16(genero);
+            sql_command.Parameters[6].Value = contraseña;
 
             i = method.ExecCommand(sql_command);
             return i;
@@ -110,7 +112,5 @@ namespace Capa_de_Presentacion
         }
 
         #endregion
-
     }
 }
-

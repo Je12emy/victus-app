@@ -1,4 +1,4 @@
-﻿@model Victus.Models.test
+﻿@model Victus.Models.Persona
 @{
     Layout = null;
 }
@@ -9,26 +9,30 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Register</title>
-    <link href="~/Content/CSS/registration.css" rel="stylesheet" />
-    <script src="~/Content/JS/transition.js"></script>
+    <link href="@Url.Content("~/Content/CSS/")registration.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    @using (Html.BeginForm()) { 
-    <div class="form_box">
-        <h1> Registro de Usuario </h1>
-        <input type="text" placeholder="Nombre" />
-        <input type="text" placeholder="Primer Apellido" /> 
-        <input type="text" placeholder="Segundo Apellido Apellido" />
-        @Html.DropDownListFor(x => x.genero, new[]
+    @using (Html.BeginForm())
+    {
+        <div class="form_box">
+            <h1> Registro de Usuario </h1>
+            @Html.TextBoxFor(x => x.correo, new { @type = "email", @placeholder = "Correo", @class = "input_helper" })
+            @Html.TextBoxFor(x => x.cedula, new { @type = "text", @placeholder = "Cedula", @class = "input_helper" })
+            @Html.TextBoxFor(x => x.nombre, new { @type = "text", @placeholder = "Nombre", @class = "input_helper" })
+            @Html.TextBoxFor(x => x.apellido1, new { @type = "text", @placeholder = "Primer Apellido", @class = "input_helper" })
+            @Html.TextBoxFor(x => x.apellido2, new { @type = "text", @placeholder = "Segundo Apellido", @class = "input_helper" })
+
+
+            @Html.DropDownListFor(x => x.genero, new[]
                                               {
                                                   new SelectListItem() { Text = "Genero"},
                                                   new SelectListItem() { Text = "Masculino", Value = bool.TrueString},
                                                   new SelectListItem() { Text = "Femenino", Value = bool.FalseString}
                                               }, new { @type = "select" })
-        <input type="email" placeholder="Correo del MEP" />
-        <input type="password" placeholder="Contraseña" />
-        <input type="submit" value="Registrarme" />
-    </div>
+            @Html.TextBoxFor(x => x.clave, new { @type = "password", @placeholder = "Contraseña", @class = "input_helper" })
+
+            <input type="submit" value="Registrarme" />
+        </div>
     }
 </body>
 </html>

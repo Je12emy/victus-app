@@ -1,4 +1,4 @@
-﻿
+﻿@model Victus.Models.Persona
 @{
     Layout = null;
 }
@@ -12,7 +12,7 @@
     <link href="~/Content/CSS/login.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
     @*<script src="~/Content/JS/transition.js"></script>*@
-    
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("body").css("display", "none");
@@ -33,10 +33,30 @@
 </head>
 <body>
     <div class="box">
-         <h1> Ingresar </h1>
-         <input type="text" placeholder="Usuario"/>
-         <input type="password" placeholder="Contraseña">
-         <input type="submit" value="Iniciar Sesion">
+        <h1> Ingresar </h1>
+
+@using (@Html.BeginForm())
+{
+    @Html.ValidationSummary()
+
+
+    if (Model == null)
+    {
+        @Html.TextBoxFor(x => x.correo, new { @type = "text", @placeholder = "Usuario", @class = "input_helper" })
+
+    }
+    else
+    {
+        @Html.TextBoxFor(x => x.correo, new { @type = "text", @placeholder = "Usuario", @class = "input_helper", @value = Model.correo.ToString() })
+    }
+    @Html.TextBoxFor(x => x.clave, new { @type = "password", @placeholder = "Contraseña", @class = "input_helper", @value = "" })
+
+
+
+
+
+            <input type="submit" value="Iniciar Sesion">
+        }
         No tengo cuenta @Html.ActionLink("Registrarme", "Register")
     </div>
 </body>
