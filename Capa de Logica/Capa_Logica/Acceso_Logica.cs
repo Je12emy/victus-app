@@ -22,11 +22,11 @@ namespace Capa_Logica
         }
      
 
-        public DataTable BuscarUsuarioTodo()
+        public DataTable BuscarUsuarioTodo(string correo)
         {
             acceso_datos datos = new acceso_datos();
             DataTable table;
-            table = datos.BuscarUsuarioTodo();
+            table = datos.BuscarUsuarioTodo(correo);
             return table;
          
         }
@@ -67,6 +67,41 @@ namespace Capa_Logica
 
 
         }
+
+        #endregion
+
+        #region Entidad Cliente
+        public DataTable BuscarUltimoRegistro(string Correo)
+        {
+            acceso_datos datos = new acceso_datos();
+            DataTable table;
+            table = datos.BuscarUltimoRegistro(Correo);
+            return table;
+        }
+
+
+        public DataTable BuscarCliente(string Correo, string Fecha) {
+            acceso_datos datos = new acceso_datos();
+            DataTable table;
+            table = datos.BuscarCliente(Correo, Fecha);
+            return table;
+        }
+        public int CrearDatosCliente(string Correo, string Peso, string Altura, string Edad, string IMC, string Agua, string Fecha) {
+            acceso_datos datos = new acceso_datos();
+            int i;
+
+            i = datos.AgregarDatosCliente(Correo, Peso, Altura, Edad, IMC, Agua,Fecha);
+            return i;
+        }
+        public int ModificarDatosCliente(string Correo, string Peso, string Altura, string Edad, string IMC, string Agua, string Fecha)
+        {
+            acceso_datos datos = new acceso_datos();
+            int i;
+
+            i = datos.ActualizarDatosCliente(Correo, Peso, Altura, Edad, IMC, Agua, Fecha);
+            return i;
+        }
+
 
         #endregion
     }

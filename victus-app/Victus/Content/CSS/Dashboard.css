@@ -1,0 +1,42 @@
+﻿body {
+    font-family:sans-serif;
+}
+
+.main_content {
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(142,206,218,1) 100%);
+    box-shadow:         4px 4px 30px 0px rgba(50, 50, 50, 0.26)
+}
+.jumbotron {
+    margin:0px;
+
+
+}
+
+.btn_sandwich {
+    /*Source for this: https://stackoverflow.com/questions/35421761/how-to-make-a-button-sandwiched-in-between-two-divs */
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+.dashboard_btn {
+        border: 0;
+        background: #2980b9;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2980b9;
+        padding: 14px 20px;
+        width: 240px;
+        outline: none;
+        border-radius: 24px;
+        transition: 0.25s;
+        color: white;
+        cursor: pointer;
+}
+    .dashboard_btn:hover {
+        background: #93CFDA;
+        border: 2px solid #93CFDA;
+        width:300px;
+    }

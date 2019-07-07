@@ -16,8 +16,43 @@ namespace Victus.Controllers
             return View();
         }
         // Login Page
+        [HttpGet]
         public ActionResult Login() {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Login(Persona p) {
+            // Login Exitoso.
+
+            Cliente_Persona _ClientePersona = new Cliente_Persona();
+
+            if (p.VerificarCredenciales(p.correo, p.clave))
+            {
+                System.Diagnostics.Debug.WriteLine("Credenciales Correctas");
+
+                if (ModelState.IsValid)
+                {
+                    
+
+                    _ClientePersona.DatosPersona.correo = p.correo.ToString();
+                    _ClientePersona.DatosPersona.nombre = p.nombre.ToString();
+                    _ClientePersona.DatosPersona.apellido1 = p.apellido1;
+                    _ClientePersona.DatosPersona.apellido2 = p.apellido2;
+                    _ClientePersona.DatosPersona.cedula = p.cedula;
+                    _ClientePersona.DatosPersona.genero = p.genero;
+
+                    System.Diagnostics.Debug.WriteLine(p.correo + "|"+ _ClientePersona.DatosPersona.nombre );
+                    return View("Dashboard", _ClientePersona);
+                }
+                else
+
+                    return View();
+            }
+            else {
+                System.Diagnostics.Debug.WriteLine("Credenciales InCorrectas");
+                return View();
+            }
+
         }
         // Registrarion Page
         [HttpGet]
@@ -36,6 +71,12 @@ namespace Victus.Controllers
             else
                 return View();
         }
+        // Datos de Usuario
+        public ActionResult MisDatos(Persona p) {
+        
+            return View();
+        }
+
 
         // Submit Info Page
         public ActionResult TestInfo() {

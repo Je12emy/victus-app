@@ -12,6 +12,7 @@ namespace Capa_Datos
     {
         #region Entidad Persona
 
+        // Entidad para almacenar la informacion basica de registro de cada usuario.
         public DataTable BuscarUsuario(string Correo)
         {
             metodo_datos method = new metodo_datos();
@@ -21,14 +22,14 @@ namespace Capa_Datos
             sql_command = method.GetCommand();
 
             sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
-            sql_command.CommandText = "SELECT * FROM Persona WHERE Correo = @Correo ";
+            sql_command.CommandText = "SELECT Correo, Contraseña FROM Persona WHERE Correo = @Correo ";
             sql_command.Parameters[0].Value = Correo;
 
 
             table = method.ExecSearch(sql_command);
             return table;
         }
-        public DataTable BuscarUsuarioTodo()
+        public DataTable BuscarUsuarioTodo(string Correo)
         {
             metodo_datos method = new metodo_datos();
             DataTable table;
@@ -36,9 +37,9 @@ namespace Capa_Datos
 
             sql_command = method.GetCommand();
 
-
-            sql_command.CommandText = "SELECT * FROM Persona";
-
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.CommandText = "SELECT * FROM Persona WHERE Correo = @Correo";
+            sql_command.Parameters[0].Value = Correo;
 
             table = method.ExecSearch(sql_command);
             return table;
@@ -109,6 +110,112 @@ namespace Capa_Datos
             return i;
 
 
+        }
+
+        #endregion
+
+        #region Entidad Cliente
+        public DataTable BuscarCliente(string correo, string fecha) {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+
+            sql_command.CommandText = "SELECT * FROM Cliente where Correo = @Correo and FechaDatos = @Fecha";
+            sql_command.Parameters[0].Value = correo;
+            sql_command.Parameters[1].Value = fecha;
+
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+
+        public DataTable BuscarUltimoRegistro(string correo) {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.CommandText = "Select Max(FechaDatos) as UltimoRegistro from Cliente Where Correo = @Correo";
+            sql_command.Parameters[0].Value = correo;
+
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+
+        public int AgregarDatosCliente(string Correo, string Peso, string Altura, string Edad, string IMC, string Agua, string Fecha) {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+
+            int i;
+
+            sql_command = method.GetCommand();
+
+
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Peso", SqlDbType.Float);
+            sql_command.Parameters.Add("@Altura", SqlDbType.Int);
+            sql_command.Parameters.Add("@Edad", SqlDbType.Int);
+            sql_command.Parameters.Add("@IMC", SqlDbType.Float);
+            sql_command.Parameters.Add("@Agua", SqlDbType.Int);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.DateTime);
+
+
+            sql_command.CommandText = "INSERT INTO Cliente Values(@Correo, @Peso, @Altura, @Edad, @IMC, @Agua, @Fecha)";
+
+            sql_command.Parameters[0].Value = Correo;
+            sql_command.Parameters[1].Value = Peso;
+            sql_command.Parameters[2].Value = Altura;
+            sql_command.Parameters[3].Value = Edad;
+            sql_command.Parameters[4].Value = IMC;
+            sql_command.Parameters[5].Value = Agua;
+            sql_command.Parameters[6].Value = Fecha;
+
+
+            i = method.ExecCommand(sql_command);
+            return i;
+        }
+        public int ActualizarDatosCliente(string Correo, string Peso, string Altura, string Edad, string IMC, string Agua, string Fecha)
+        {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+
+            int i;
+
+            sql_command = method.GetCommand();
+
+
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Peso", SqlDbType.Float);
+            sql_command.Parameters.Add("@Altura", SqlDbType.Int);
+            sql_command.Parameters.Add("@Edad", SqlDbType.Int);
+            sql_command.Parameters.Add("@IMC", SqlDbType.Float);
+            sql_command.Parameters.Add("@Agua", SqlDbType.Int);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.DateTime);
+
+
+            sql_command.CommandText = "UPDATE Cliente SET Peso = @Peso, Altura = @Altura, Edad = @Edad, IMC = @IMC, CantidadAgua = @Agua WHERE Correo = @Correo AND FechaDatos = @Fecha";
+
+            sql_command.Parameters[0].Value = Correo;
+            sql_command.Parameters[1].Value = Peso;
+            sql_command.Parameters[2].Value = Altura;
+            sql_command.Parameters[3].Value = Edad;
+            sql_command.Parameters[4].Value = IMC;
+            sql_command.Parameters[5].Value = Agua;
+            sql_command.Parameters[6].Value = Fecha;
+
+
+            i = method.ExecCommand(sql_command);
+            return i;
         }
 
         #endregion

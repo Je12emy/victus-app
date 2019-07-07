@@ -120,12 +120,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\BootStrap\bootstrap-grid.css" />
+    <Content Include="Content\BootStrap\bootstrap-grid.min.css" />
+    <Content Include="Content\BootStrap\bootstrap-reboot.css" />
+    <Content Include="Content\BootStrap\bootstrap-reboot.min.css" />
+    <Content Include="Content\BootStrap\bootstrap.css" />
+    <Content Include="Content\BootStrap\bootstrap.min.css" />
+    <Content Include="Content\CSS\Dashboard.css" />
+    <Content Include="Content\CSS\datos.css" />
     <Content Include="Content\CSS\home.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\registration.css" />
@@ -134,8 +136,14 @@
     <Content Include="Content\JS\registration_steps.js" />
     <Content Include="Content\JS\transition.js" />
     <Content Include="Content\Resources\adult-architecture-athlete-221210.jpg" />
+    <Content Include="Content\Resources\bmi.png" />
     <Content Include="Content\Resources\butternut-squash-close-up-colors-1851468.jpg" />
+    <Content Include="Content\Resources\calories.png" />
     <Content Include="Content\Resources\carrots-carrying-colorful-1389103.jpg" />
+    <Content Include="Content\Resources\dropwater.jpg" />
+    <Content Include="Content\Resources\imc.png" />
+    <Content Include="Content\Resources\Water-icon.png" />
+    <Content Include="Content\Resources\Water.png" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -147,6 +155,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cliente_Persona.cs" />
+    <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,16 +168,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\BootStrap\bootstrap-grid.css.map" />
+    <Content Include="Content\BootStrap\bootstrap-grid.min.css.map" />
+    <Content Include="Content\BootStrap\bootstrap-reboot.css.map" />
+    <Content Include="Content\BootStrap\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\BootStrap\bootstrap.css.map" />
+    <Content Include="Content\BootStrap\bootstrap.min.css.map" />
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Home\test.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Result.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\MisDatos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
