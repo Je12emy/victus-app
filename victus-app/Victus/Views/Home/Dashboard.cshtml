@@ -41,17 +41,27 @@
                         <div class="card-block px-2">
                             <br>
                             <h4 class="card-title text-center">IMC</h4>
-                            <p class="card-text display-2 text-center">  @ViewBag.IMC
-                                @*@{
-                                    if (Model.DatosCliente.IMC == null)
+                            <p class="card-text display-2 text-center">  @{
+                                if (ViewBag.Agua_Nueva != null)
+                                {
+                                    if (Convert.ToDouble(ViewBag.IMC) < Convert.ToDouble(ViewBag.IMC_Nueva))
                                     {
-                                        @Html.Raw("n/d")
+                                        <span style="color:green"> @ViewBag.IMC_Nueva </span>
                                     }
-                                    else
+                                    if (Convert.ToDouble(ViewBag.IMC) > Convert.ToDouble(ViewBag.IMC_Nueva))
                                     {
-                                        @Model.DatosCliente.IMC.ToString()
+                                        <span style="color:red"> @ViewBag.IMC_Nueva </span>
                                     }
-                                }*@
+                                    else if (Convert.ToDouble(ViewBag.IMC) == Convert.ToDouble(ViewBag.IMC_Nueva))
+                                    {
+                                        <span style="color:gray"> @ViewBag.IMC_Nueva </span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span>  @ViewBag.IMC</span>
+                                }
+                            }
                             </p>
                         </div>
                     </div>
@@ -65,15 +75,28 @@
                         <div class="card-block px-2">
                             <br>
                             <h4 class="card-title text-center">Agua Recomendada</h4>
-                            <p class="card-text display-2 text-center"> @ViewBag.Agua
-                                @*@{
-                                    if (@Model.DatosCliente.Agua == null)
+                            <p class="card-text display-2 text-center">
+                                @{
+                                    if (ViewBag.Agua_Nueva != null)
                                     {
-                                        @Html.Raw("n/d")
+                                        if (Convert.ToUInt32(ViewBag.Agua) < Convert.ToUInt32(ViewBag.Agua_Nueva))
+                                        {
+                                            <span style="color:green"> @ViewBag.Agua_Nueva </span>
+                                        }
+                                        if (Convert.ToUInt32(ViewBag.Agua) > Convert.ToUInt32(ViewBag.Agua_Nueva))
+                                        {
+                                            <span style="color:red"> @ViewBag.Agua_Nueva </span>
+                                        }
+                                        else if (Convert.ToUInt32(ViewBag.Agua) == Convert.ToUInt32(ViewBag.Agua_Nueva))
+                                        {
+                                            <span style="color:gray"> @ViewBag.Agua_Nueva </span>
+                                        }
                                     }
                                     else
-                                    { @Model.DatosCliente.Agua }
-                                }*@   
+                                    {
+                                        <span>  @ViewBag.Agua</span>
+                                    }
+                                }
                             </p>
                         </div>
                     </div>

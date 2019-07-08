@@ -61,6 +61,10 @@ namespace Victus.Controllers
         // Registrarion Page
         [HttpGet]
         public ActionResult Register() {
+
+
+
+
             return View();
         }
         [HttpPost]
@@ -79,16 +83,42 @@ namespace Victus.Controllers
         // DashBoard
         [HttpGet]
         public ActionResult Dashboard() {
+            Cliente c = new Cliente();
             string _Usuario;
+            DataTable ultimo_registro;
+            DataTable Registro;
+            String FechaUltimoRegistro;
+
+
             if (TempData.ContainsKey("Usuario"))
             {
                 _Usuario = TempData["Usuario"].ToString();
+
+                ultimo_registro = c.ObtenerUltimoRegistro(_Usuario);
+                FechaUltimoRegistro = ultimo_registro.Rows[0][0].ToString();
+
+                Registro = c.ObtenerDatosUsuario(_Usuario, FechaUltimoRegistro);
+
+                TempData["IMC"] = Registro.Rows[0][5].ToString();
+                TempData["Agua"] = Registro.Rows[0][6].ToString();
+
+                
+
                 TempData.Keep();
+
                 ViewBag.Usuario = _Usuario;
+
                 ViewBag.Agua = TempData["Agua"];
                 ViewBag.IMC = TempData["IMC"];
 
+                // Si tengo TempData de Agua y IMC nuevas.
+                if (TempData.ContainsKey("Agua_nueva") && TempData.ContainsKey("IMC_nueva"))
+                {
+                    // Creo ViewBags para allas.
+                    ViewBag.Agua_nueva = TempData["Agua_nueva"];
+                    ViewBag.IMC_nueva = TempData["IMC_nueva"];
 
+                }
                 return View();
             }
             else{
@@ -125,7 +155,7 @@ namespace Victus.Controllers
             String FechaUltimoRegistro;
 
             int i;
-            DateTime today = DateTime.Today;
+            DateTime today = DateTime.Now;
             string Correo = TempData["Usuario"].ToString();
             string Peso = c.Peso.ToString();
             string Edad = c.Edad.ToString();
@@ -138,7 +168,7 @@ namespace Victus.Controllers
             string Agua = Convert.ToString(Math.Round((c.Peso / 7),0));
             System.Diagnostics.Debug.WriteLine(Agua.ToString());
 
-            string fecha = today.ToString("MM/dd/yyyy");
+            string fecha = today.ToString();
 
             i = c.AgregarDatosUsuario(Correo, Peso,Altura,Edad, IMC, Agua, fecha);
 
@@ -150,8 +180,8 @@ namespace Victus.Controllers
 
             Registro = c.ObtenerDatosUsuario(Correo,FechaUltimoRegistro);
 
-            TempData["IMC"] = Registro.Rows[0][5].ToString();
-            TempData["Agua"] = Registro.Rows[0][6].ToString();
+            TempData["IMC_nueva"] = Registro.Rows[0][5].ToString();
+            TempData["Agua_nueva"] = Registro.Rows[0][6].ToString();
 
             System.Diagnostics.Debug.WriteLine(TempData["IMC"] + "|" + TempData["Agua"] );
 
