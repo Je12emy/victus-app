@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Victus.Models
 {
-    public class Cliente_Persona
+    public class ModeloDatos
     {
         public Cliente DatosCliente { get; set; } = new Cliente();
         public Persona DatosPersona { get; set; } = new Persona();
