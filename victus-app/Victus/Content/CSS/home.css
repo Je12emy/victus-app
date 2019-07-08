@@ -22,6 +22,7 @@ a, u {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    font-family: sans-serif
 }
 
 .hero_index_text {

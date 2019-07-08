@@ -10,11 +10,11 @@ namespace Victus.Models
     public class Cliente
     {
         public string Correo { get; set; }
-        public string Peso { get; set; }
-        public string Altura { get; set; }
-        public string Edad { get; set; }
-        public string IMC { get; set; }
-        public string Agua { get; set; }
+        public float Peso { get; set; }
+        public float Altura { get; set; }
+        public float Edad { get; set; }
+        public float IMC { get; set; }
+        public int Agua { get; set; }
 
         // Metodos
         Acceso_Logica datos = new Acceso_Logica();

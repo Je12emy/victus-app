@@ -41,7 +41,8 @@ namespace Victus.Controllers
                     _ClientePersona.DatosPersona.cedula = p.cedula;
                     _ClientePersona.DatosPersona.genero = p.genero;
 
-                    System.Diagnostics.Debug.WriteLine(p.correo + "|"+ _ClientePersona.DatosPersona.nombre );
+                    System.Diagnostics.Debug.WriteLine(p.correo + "|" + _ClientePersona.DatosPersona.nombre );
+                    
                     return View("Dashboard", _ClientePersona);
                 }
                 else
@@ -71,13 +72,49 @@ namespace Victus.Controllers
             else
                 return View();
         }
-        // Datos de Usuario
-        public ActionResult MisDatos(Persona p) {
-        
+
+        // DashBoard
+        [HttpGet]
+        public ActionResult Dashboard(Cliente_Persona _ClientePersona) {
+
             return View();
+
+        }
+        [HttpPost]
+        public ActionResult LoadData(Cliente_Persona _ClientePersona)
+        {
+            return View("MisDatos", _ClientePersona);
+
         }
 
+        // Datos de Usuario
+        [HttpGet]
+        public ActionResult MisDatos() {
+            return View();
 
+        }
+        [HttpPost]
+        public ActionResult InsertarDatos(Cliente_Persona _ClientePersona) {
+            int i;
+            DateTime today = DateTime.Today;
+            string Correo = _ClientePersona.DatosPersona.correo.ToString();;
+            string Peso = _ClientePersona.DatosCliente.Peso.ToString();
+            string Edad = _ClientePersona.DatosCliente.Edad.ToString();
+            string Altura = _ClientePersona.DatosCliente.Altura.ToString();
+
+            // Peso / Altura^2
+            string IMC = Convert.ToString(_ClientePersona.DatosCliente.Peso / (_ClientePersona.DatosCliente.Altura * 2));
+
+            // Peso en KG/7 y redondeo a Entero
+            string Agua = Convert.ToString(Math.Round(_ClientePersona.DatosCliente.Peso / 7,0));
+            string fecha = today.ToString("dd/MM/yyyy");
+
+            i = _ClientePersona.DatosCliente.AgregarDatosUsuario(Correo, Peso,Altura,Edad, IMC, Agua, fecha);
+
+            System.Diagnostics.Debug.WriteLine("INSERTANDO DATOS DE CLIENTE.");
+                
+            return View("Dashborad", _ClientePersona);
+        }
         // Submit Info Page
         public ActionResult TestInfo() {
             return View();

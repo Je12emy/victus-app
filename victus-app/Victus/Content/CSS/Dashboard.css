@@ -12,6 +12,15 @@
 
 
 }
+a, u {
+    text-decoration: none;
+}
+
+    a:hover, u:hover {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
 .btn_sandwich {
     /*Source for this: https://stackoverflow.com/questions/35421761/how-to-make-a-button-sandwiched-in-between-two-divs */
@@ -40,3 +49,23 @@
         border: 2px solid #93CFDA;
         width:300px;
     }
+/**  STYLE 11 */
+#style-11::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+}
+
+#style-11::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(left, #fff, #e4e4e4);
+  border: 1px solid #aaa;
+}
+
+#style-11::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+#style-11::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(left, #22ADD4, #1E98BA);
+}

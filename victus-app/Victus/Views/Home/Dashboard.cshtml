@@ -13,6 +13,18 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/CSS/Dashboard.css" rel="stylesheet" />
     <title>Dashboard</title>
+    <style>
+        a, u {
+            text-decoration: none;
+        };
+
+        a:hover, u:hover {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        </style>
 </head>
 <body>
     <div class="container-fluid main_content">
@@ -30,8 +42,18 @@
                         <div class="card-block px-2">
                             <br>
                             <h4 class="card-title text-center">IMC</h4>
-                            <p class="card-text display-2 text-center"> ## % </p>
-
+                            <p class="card-text display-2 text-center">
+                                @{
+                                    if (Model.DatosCliente.IMC == null)
+                                    {
+                                        @Html.Raw("n/d")
+                                    }
+                                    else
+                                    {
+                                        @Model.DatosCliente.IMC.ToString()
+                                    }
+                                }
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -44,12 +66,21 @@
                         <div class="card-block px-2">
                             <br>
                             <h4 class="card-title text-center">Agua Recomendada</h4>
-                            <p class="card-text display-2 text-center">#### ml </p>                  
-                        </div>                       
+                            <p class="card-text display-2 text-center">
+                                @{
+                                    if (@Model.DatosCliente.Agua == null)
+                                    {
+                                        @Html.Raw("n/d")
+                                    }
+                                    else
+                                    { @Model.DatosCliente.Agua }
+                                }   
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>   
-            
+            </div>
+
             <div class="row mt-4">
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card flex-row flex-wrap shadow-lg">
@@ -59,20 +90,21 @@
                         <div class="card-block px-4 w-100" style="position:absolute">
                             <br>
                             <h4 class="card-title text-center">Calorias</h4>
-                            <p class="card-text display-2 text-center"> @Model.DatosPersona.nombre k/cal </p>
+                            <p class="card-text display-2 text-center"> k/cal </p>
                         </div>
                     </div>
                 </div>
-            </div> 
-            
-                
+            </div>
+
+
         </div>
         <!-- Button en Sandwich -->
+        @using (Html.("LoadData", "Home", FormMethod.Post))
+        { 
         <div class="btn_sandwich">
-            <input type="submit" value="Mis datos" class="dashboard_btn">
+            <input type="submit" value="Mis Datos" class="dashboard_btn">
         </div>
-        
-
+        }
     </div>
 </body>
 </html>

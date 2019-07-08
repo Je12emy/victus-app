@@ -1,4 +1,4 @@
-﻿
+﻿@model Victus.Models.Cliente_Persona
 @{
     Layout = null;
 }
@@ -7,13 +7,29 @@
 
 <html>
 <head>
+    <script src="https://kit.fontawesome.com/4e9acb012c.js"></script>
     <meta name="viewport" content="width=device-width" />
-
+    <link href="~/Content/CSS/datos.css" rel="stylesheet" />
+    <script src="~/Content/JS/transition.js"></script>
     <title>Mis Datos</title>
 </head>
 <body>
+
+    <div class="volver_btn">
+        <i class="fas fa-arrow-circle-left fa-5x"></i>
+    </div>
+
     <div class="box">
-        <input type="text"> 
+        @using (@Html.BeginForm("InsertarDatos", "Home", FormMethod.Post))
+        {
+            @Html.ValidationSummary()
+            <h1> Ingresa tus Datos </h1>
+            @Html.TextBoxFor(x => x.DatosCliente.Peso, new { @class = "input_helper", @placeholder = "Peso", @type = "number" })
+            @Html.TextBoxFor(x => x.DatosCliente.Altura, new { @class = "input_helper", @placeholder = "Altura", @type = "number" })
+            @Html.TextBoxFor(x => x.DatosCliente.Edad, new { @class = "input_helper", @placeholder = "Edad", @type = "number" })
+
+            <input type="submit" value="Guardar"/>
+        }
     </div>
 </body>
 </html>
