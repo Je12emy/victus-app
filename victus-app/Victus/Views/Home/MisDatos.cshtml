@@ -11,25 +11,72 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/CSS/datos.css" rel="stylesheet" />
     <script src="~/Content/JS/transition.js"></script>
+
     <title>Mis Datos</title>
+    <meta charset="UTF-8">
+    <style>
+
+        .limpiar {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #ecf0f1 !important;
+            padding: 14px 20px;
+            width: 220px;
+            outline: none;
+            border-radius: 24px;
+            transition: 0.25s;
+            color: white;
+            cursor: pointer;
+        }
+
+            .limpiar:hover {
+                color: #2c3e50 !important;
+                background: #ecf0f1 !important;
+            }
+
+        a, u {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.25s;
+        }
+
+            a:hover {
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .volver_btn {
+            top: 0%;
+            left: 0%;
+            transform: translate(50%, 50%);
+            position: absolute;
+        }
+    </style>
+
 </head>
 <body>
-
     <div class="volver_btn">
-        <i class="fas fa-arrow-circle-left fa-5x"></i>
+        <a href='@Url.Action("Dashboard", "Home")'><i class="fas fa-arrow-circle-left fa-5x"></i></a>
     </div>
 
     <div class="box">
         @using (@Html.BeginForm())
-        {
+            {
             @Html.ValidationSummary()
             <h1> Ingresa tus Datos </h1>
 
-            @Html.TextBoxFor(x => x.Peso, new { @class = "input_helper", @placeholder = "Peso", @type = "number", @Value = "", @step = "0.2"})
-            @Html.TextBoxFor(x => x.Altura, new { @class = "input_helper", @placeholder = "Altura", @type = "number", @Value = "", @step = "0.2" })
-            @Html.TextBoxFor(x => x.Edad, new { @class = "input_helper", @placeholder = "Edad", @type = "number", @Value = "", @step = "0.2" })
-            <input type="submit" value="Guardar"/>
+                @Html.TextBoxFor(x => x.Peso, new { @class = "input_helper", @placeholder = "Peso", @type = "number", @Value = "", @step = "0.2" })
+                @Html.TextBoxFor(x => x.Altura, new { @class = "input_helper", @placeholder = "Altura", @type = "number", @Value = "", @step = "0.2" })
+                @Html.TextBoxFor(x => x.Edad, new { @class = "input_helper", @placeholder = "Edad", @type = "number", @Value = "", @step = "0.2" })
+                <input type="submit" value="Guardar" />
+
         }
+        <input type="reset" value="Limpiar" class="limpiar">
     </div>
+
 </body>
 </html>

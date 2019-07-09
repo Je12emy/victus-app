@@ -1,11 +1,21 @@
-﻿body {
-    font-family:sans-serif;
-}
+﻿@charset "UTF-8";
+
 body {
-    background-color:#34495e;
     font-family: sans-serif;
-   
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../Resources/checking-checklist-daily-report-1001752.jpg") !important;
 }
+
+a, u {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.25s;
+}
+
+    a:hover {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
 .volver_btn {
     top: 0%;
     left: 0%;
@@ -13,28 +23,28 @@ body {
     position: absolute;
 }
 
-
 .box {
-    opacity:0.95;
-    position:absolute;
-    background-color:#191919;
+    opacity: 0.95;
+    position: absolute;
+    background-color: #191919;
     color: white;
-    width:300px;
-    padding:40px;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    text-align:center;
+    width: 300px;
+    padding: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
-.box h1{
-    text-align:center;
-    color:white;
-    text-transform: uppercase;
-    font-weight:500;
-}
+
+    .box h1 {
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
 
 .input_helper {
-    resize:none;
+    resize: none;
     font-family: sans-serif;
     border: 0;
     background: none;
@@ -56,48 +66,78 @@ body {
         border-color: #2ecc71;
     }
 
-    .box input[type = "text"], .box input[type = "password"] {
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #3498db;
-        padding: 14px 10px;
-        width: 200px;
-        outline: none;
-        border-radius: 24px;
-        transition: 0.25s;
-        color: white;
-    }
-        .box input[type = "text"]:focus, .box input[type = "password"]:focus {
-        width: 280px;
-        border-color: #2ecc71;
-        }
-    .box input[type = "submit"] {
-    /*Source for this: https://www.youtube.com/watch?v=HV7DtH3J2PU */
-        border: 0;
-        background: none;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #2ecc71;
-        padding: 14px 20px;
-        width: 220px;
-        outline: none;
-        border-radius: 24px;
-        transition: 0.25s;
-        color: white;
-        cursor:pointer;
+.box input[type = "text"], .box input[type = "password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    color: white;
 }
 
-        .box input[type = "submit"]:hover {
-            background: #2ecc71;
-        }
+    .box input[type = "text"]:focus, .box input[type = "password"]:focus {
+        width: 280px;
+        border-color: #2ecc71;
+    }
+
+.box input[type = "reset"]{
+    border: 2px solid #ecf0f1 !important;
+}
+
+    .box input[type = "reset"]:hover {
+        color: #2c3e50 !important;
+        background: #ecf0f1 !important;
+    }
+
+.box input[type = "submit"], input[type = "reset"] {
+    /*Source for this: https://www.youtube.com/watch?v=HV7DtH3J2PU */
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 20px;
+    width: 220px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    color: white;
+    cursor: pointer;
+}
+
+    .box input[type = "submit"]:hover {
+        background: #2ecc71;
+    }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+.limpiar {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #ecf0f1 !important;
+    padding: 14px 20px;
+    width: 220px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    color: white;
+    cursor: pointer;
+}
 
+    .limpiar:hover {
+        color: #2c3e50 !important;
+        background: #ecf0f1 !important;
+    }

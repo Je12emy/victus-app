@@ -1,17 +1,17 @@
 ﻿body {
-    font-family:sans-serif;
+    font-family: sans-serif;
 }
 
 .main_content {
     background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(142,206,218,1) 100%);
-    box-shadow:         4px 4px 30px 0px rgba(50, 50, 50, 0.26)
+    box-shadow: 4px 4px 30px 0px rgba(50, 50, 50, 0.26);
 }
+
 .jumbotron {
-    margin:0px;
-
-
+    margin: 0px;
 }
+
 a, u {
     text-decoration: none;
 }
@@ -28,44 +28,48 @@ a, u {
     position: absolute;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
+    font-weight: 600;
+    letter-spacing: 2px;
 }
+
 .dashboard_btn {
-        border: 0;
-        background: #2980b9;
-        display: block;
-        margin: 20px auto;
-        text-align: center;
-        border: 2px solid #2980b9;
-        padding: 14px 20px;
-        width: 240px;
-        outline: none;
-        border-radius: 24px;
-        transition: 0.25s;
-        color: white;
-        cursor: pointer;
+    border: 0;
+    background: #2980b9;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2980b9;
+    padding: 14px 20px;
+    width: 240px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    color: white;
+    cursor: pointer;
 }
+
     .dashboard_btn:hover {
         background: #93CFDA;
         border: 2px solid #93CFDA;
-        width:300px;
+        width: 300px;
     }
 /**  STYLE 11 */
 #style-11::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background: rgba(0,0,0,0.1);
-  border: 1px solid #ccc;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+    border: 1px solid #ccc;
 }
 
 #style-11::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: linear-gradient(left, #fff, #e4e4e4);
-  border: 1px solid #aaa;
+    border-radius: 10px;
+    background: linear-gradient(left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
 }
 
-#style-11::-webkit-scrollbar-thumb:hover {
-  background: #fff;
-}
+    #style-11::-webkit-scrollbar-thumb:hover {
+        background: #fff;
+    }
 
-#style-11::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(left, #22ADD4, #1E98BA);
-}
+    #style-11::-webkit-scrollbar-thumb:active {
+        background: linear-gradient(left, #22ADD4, #1E98BA);
+    }
