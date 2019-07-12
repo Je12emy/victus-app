@@ -126,13 +126,15 @@
     <Content Include="Content\BootStrap\bootstrap-reboot.min.css" />
     <Content Include="Content\BootStrap\bootstrap.css" />
     <Content Include="Content\BootStrap\bootstrap.min.css" />
+    <Content Include="Content\CSS\actividad.css" />
     <Content Include="Content\CSS\Dashboard.css" />
     <Content Include="Content\CSS\datos.css" />
     <Content Include="Content\CSS\home.css" />
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\registration.css" />
-    <Content Include="Content\CSS\test.css" />
+    <Content Include="Content\CSS\PruebaCalorica.css" />
     <Content Include="Content\JS\jquery-3.4.1.min.js" />
+    <Content Include="Content\JS\radio_buttons.js" />
     <Content Include="Content\JS\registration_steps.js" />
     <Content Include="Content\JS\transition.js" />
     <Content Include="Content\Resources\adult-architecture-athlete-221210.jpg" />
@@ -156,6 +158,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HarrisBen.cs" />
     <Compile Include="Models\ModeloDatos.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Persona.cs" />
@@ -176,11 +179,12 @@
     <Content Include="Content\BootStrap\bootstrap.css.map" />
     <Content Include="Content\BootStrap\bootstrap.min.css.map" />
     <Content Include="Views\Home\login.cshtml" />
-    <Content Include="Views\Home\test.cshtml" />
+    <Content Include="Views\Home\Steps.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Result.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\MisDatos.cshtml" />
+    <Content Include="Views\Home\Factor_de_Actividad.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

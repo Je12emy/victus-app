@@ -59,8 +59,9 @@ namespace Capa_Datos
                 Adapter.Fill(table);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
                 throw;
             }
             finally

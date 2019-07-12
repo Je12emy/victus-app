@@ -104,5 +104,29 @@ namespace Capa_Logica
 
 
         #endregion
+
+        #region Entidad HarrisBen
+        public DataTable BuscarUltimoRegistroHarris(string correo)
+        {
+            acceso_datos datos = new acceso_datos();
+            DataTable table;
+            table = datos.BuscarUltimoRegistroHarris(correo);
+            return table;
+        }
+        public DataTable BuscarRegistroHarris(string correo, string fecha)
+        {
+            acceso_datos datos = new acceso_datos();     
+            DataTable table;
+            table = datos.BuscarRegistroHarris(correo,fecha);
+            return table;
+        }
+        public int AgregarRegistroHarris(string FactorActividad, string TMB, string NivelCalorico, string fecha, string correo)
+        {
+            acceso_datos datos = new acceso_datos();
+            int i;
+            i = datos.AgregarRegistroHarris(FactorActividad,TMB,NivelCalorico,fecha,correo);
+            return i;
+        }
+        #endregion
     }
 }

@@ -1,0 +1,99 @@
+﻿@model Victus.Models.HarrisBen
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Mi factor de Actividad</title>
+    <link href="~/Content/CSS/PruebaCalorica.css" rel="stylesheet" />
+    <script src="~/Content/JS/radio_buttons.js"></script>
+    <script src="~/Content/JS/transition.js"></script>
+    <script src="https://kit.fontawesome.com/4e9acb012c.js"></script>
+
+    <style>
+        .limpiar {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #ecf0f1 !important;
+            padding: 14px 20px;
+            width: 220px;
+            outline: none;
+            border-radius: 24px;
+            transition: 0.25s;
+            color: white;
+            cursor: pointer;
+        }
+
+            .limpiar:hover {
+                color: #2c3e50 !important;
+                background: #ecf0f1 !important;
+            }
+
+        a, u {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.25s;
+        }
+
+            a:hover {
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .volver_btn {
+            top: 0%;
+            left: 0%;
+            transform: translate(50%, 50%);
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="volver_btn">
+        <a href='@Url.Action("Dashboard", "Home")'><i class="fas fa-arrow-circle-left fa-5x"></i></a>
+    </div>
+    <div class="box">
+
+        <h1> Mi Factor de Actividad </h1>
+        @using (Html.BeginForm())
+        {
+            <div class="button_radio" onclick="SelectThis(this)">
+                @Html.Label("Trabajo de escritorio – sin ejercicio", new { @for = "sedentario" })
+                @Html.RadioButtonFor(x => x.NivelActividad, "sedentario", new { @id = "sedentario", @class = "radio" })
+            </div>
+
+            <div class="button_radio" onclick="SelectThis(this)">
+                @Html.Label("Ejercicio 1-3 días por semana", new { @for = "ligero" })
+                @Html.RadioButtonFor(x => x.NivelActividad, "ligero", new { @id = "ligero", @class = "radio" })
+            </div>
+
+            <div class="button_radio" onclick="SelectThis(this)">
+                @Html.Label("Ejercicio 3-5 días por semana", new { @for = "moderado" })
+                @Html.RadioButtonFor(x => x.NivelActividad, "moderado", new { @id = "moderado", @class = "radio" })
+            </div>
+
+            <div class="button_radio" onclick="SelectThis(this)">
+                @Html.Label("Ejercicio 6-7 días por semana", new { @for = "intenso" })
+                @Html.RadioButtonFor(x => x.NivelActividad, "intenso", new { @id = "intenso", @class = "radio" })
+            </div>
+
+            <div class="button_radio" onclick="SelectThis(this)">
+                @Html.Label("Ejercicio 2 veces al día", new { @for = "muy intenso" })
+                @Html.RadioButtonFor(x => x.NivelActividad, "muy_intenso", new { @id = "muy intenso", @class = "radio" })
+            </div>
+            <input type="submit" value="Actualizar">
+        }
+       
+        
+    </div>
+</body>
+</html>

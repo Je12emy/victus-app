@@ -219,5 +219,77 @@ namespace Capa_Datos
         }
 
         #endregion
+
+        #region Entidad Harris Ben
+        public DataTable BuscarUltimoRegistroHarris(string correo)
+        {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.CommandText = "Select Max(FechaHarris) as UltimoRegistro from HarrisBen Where Correo = @Correo";
+            sql_command.Parameters[0].Value = correo;
+
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        public DataTable BuscarRegistroHarris(string correo, string fecha)
+        {
+
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+
+            sql_command.CommandText = "SELECT * FROM HarrisBen where Correo = @Correo and FechaHarris = @Fecha";
+            sql_command.Parameters[0].Value = correo;
+            sql_command.Parameters[1].Value = fecha;
+
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        public int AgregarRegistroHarris(string FactorActividad,string TMB, string NivelCalorico, string fecha, string correo) {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+
+            int i;
+
+            sql_command = method.GetCommand();
+
+
+
+            sql_command.Parameters.Add("@FactorActividad", SqlDbType.Float);
+            sql_command.Parameters.Add("@TMB", SqlDbType.Float);
+            sql_command.Parameters.Add("@NivelCalorico", SqlDbType.Float);
+            sql_command.Parameters.Add("@FechaHarris", SqlDbType.DateTime);
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+
+
+
+            sql_command.CommandText = "INSERT INTO HarrisBen Values(@FactorActividad, @TMB, @NivelCalorico, @FechaHarris, @Correo)";
+
+            sql_command.Parameters[0].Value = FactorActividad;
+            sql_command.Parameters[1].Value = TMB;
+            sql_command.Parameters[2].Value = NivelCalorico;
+            sql_command.Parameters[3].Value = fecha;
+            sql_command.Parameters[4].Value = correo;
+
+            i = method.ExecCommand(sql_command);
+            return i;
+        }
+
+
+
+        #endregion
     }
 }
+

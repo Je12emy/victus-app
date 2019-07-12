@@ -11,6 +11,7 @@ namespace Victus.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+
         // Landing Page
         public ActionResult Index()
         {
@@ -35,16 +36,7 @@ namespace Victus.Controllers
                 {
                     // Enviar atravez de TempData el Usuario.
                     TempData["Usuario"] = p.correo.ToString();
-
-
-                    _ClientePersona.DatosPersona.correo = p.correo.ToString();
-                    _ClientePersona.DatosPersona.nombre = p.nombre.ToString();
-                    _ClientePersona.DatosPersona.apellido1 = p.apellido1;
-                    _ClientePersona.DatosPersona.apellido2 = p.apellido2;
-                    _ClientePersona.DatosPersona.cedula = p.cedula;
-                    _ClientePersona.DatosPersona.genero = p.genero;
-
-                    System.Diagnostics.Debug.WriteLine(p.correo + "|" + _ClientePersona.DatosPersona.nombre );
+                    TempData["Genero"] = p.genero.ToString();
 
                     return RedirectToAction("Dashboard");
                 }
@@ -84,15 +76,18 @@ namespace Victus.Controllers
         [HttpGet]
         public ActionResult Dashboard() {
             Cliente c = new Cliente();
+            HarrisBen HB = new HarrisBen();
             string _Usuario;
+            string _Genero;
             DataTable ultimo_registro;
             DataTable Registro;
             String FechaUltimoRegistro;
 
 
-            if (TempData.ContainsKey("Usuario"))
+            if (TempData.ContainsKey("Usuario") || TempData.ContainsKey("Genero"))
             {
                 _Usuario = TempData["Usuario"].ToString();
+                _Genero = TempData["Genero"].ToString();
 
                 ultimo_registro = c.ObtenerUltimoRegistro(_Usuario);
                 FechaUltimoRegistro = ultimo_registro.Rows[0][0].ToString();
@@ -102,12 +97,22 @@ namespace Victus.Controllers
                 TempData["IMC"] = Registro.Rows[0][5].ToString();
                 TempData["Agua"] = Registro.Rows[0][6].ToString();
 
-                
+                ultimo_registro = HB.BuscarUltimoRegistroHarris(_Usuario);
+                FechaUltimoRegistro = ultimo_registro.Rows[0][0].ToString();
+
+                Registro = HB.BuscarRegistroHarris(_Usuario,FechaUltimoRegistro);
+
+                System.Diagnostics.Debug.WriteLine(Registro.Rows[0][0].ToString());
+
+                TempData["Calorias"] = Registro.Rows[0][3].ToString();
+
+                ViewBag.Calorias = TempData["Calorias"];
 
                 TempData.Keep();
 
                 ViewBag.Usuario = _Usuario;
 
+                ViewBag.IMC = TempData["Calorias"];
                 ViewBag.Agua = TempData["Agua"];
                 ViewBag.IMC = TempData["IMC"];
 
@@ -117,8 +122,12 @@ namespace Victus.Controllers
                     // Creo ViewBags para allas.
                     ViewBag.Agua_nueva = TempData["Agua_nueva"];
                     ViewBag.IMC_nueva = TempData["IMC_nueva"];
-
                 }
+                if (TempData.ContainsKey("Calorias"))
+                {
+                    ViewBag.IMC_nueva = TempData["Calorias_nueva"];
+                }
+
                 return View();
             }
             else{
@@ -134,10 +143,12 @@ namespace Victus.Controllers
         [HttpGet]
         public ActionResult MisDatos() {
             string _Usuario;
+            string _Genero;
             // Aun debo de tener el correo del usuario gracias al TempData
-            if (TempData.ContainsKey("Usuario"))
+            if (TempData.ContainsKey("Usuario") || TempData.ContainsKey("Genero"))
             {
                 _Usuario = TempData["Usuario"].ToString();
+                _Genero = TempData["Genero"].ToString();
                 TempData.Keep();
                 ViewBag.Usuario = _Usuario;
                 return View();
@@ -187,9 +198,106 @@ namespace Victus.Controllers
 
             return RedirectToAction("Dashboard");
         }
-        // Submit Info Page
-        public ActionResult TestInfo() {
-            return View();
+
+        // Nivel Calorico para la dieta.
+        [HttpGet]
+        public ActionResult Factor_de_Actividad() {
+            string _Usuario;
+            string _Genero;
+            // Aun debo de tener el correo del usuario gracias al TempData
+            if (TempData.ContainsKey("Usuario") || TempData.ContainsKey("Genero"))
+            {
+                _Usuario = TempData["Usuario"].ToString();
+                _Genero = TempData["Genero"].ToString();
+                TempData.Keep();
+                ViewBag.Usuario = _Usuario;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+          
+        }
+        [HttpPost]
+        public ActionResult Factor_de_Actividad(HarrisBen HB)
+        {
+
+            System.Diagnostics.Debug.WriteLine("Insertando Formula HarrisBen");
+
+            double FactorActividad = 0;
+            double tmb;
+            double peso;
+            int altura;
+            int edad;
+            double TotalCalorias;
+
+            DataTable ultimo_registro;
+            DataTable Registro;
+            String FechaUltimoRegistro;
+            string Correo = TempData["Usuario"].ToString();
+            // Ocupo el Genero de este cliente y su Peso, Edad y Altura
+            Cliente c = new Cliente();
+            DataTable DataCliente = c.ObtenerUltimoRegistro(Correo);
+            FechaUltimoRegistro = DataCliente.Rows[0][0].ToString();
+            // Aca ya tengo los datos necesarios.
+            DataCliente = c.ObtenerDatosUsuario(Correo,FechaUltimoRegistro);
+            // Capturar los datos del ultimo registro del cliente.
+
+            peso = Convert.ToDouble(DataCliente.Rows[0][2].ToString());
+            altura = Convert.ToInt16(DataCliente.Rows[0][3].ToString());
+            edad = Convert.ToInt16(DataCliente.Rows[0][4].ToString());
+
+
+            string Genero = TempData["Genero"].ToString();
+            int i;
+            DateTime today = DateTime.Now;
+           
+            string Seleccion = HB.NivelActividad.ToString();
+
+            // Comprar el factor de Actividad
+            if (Seleccion == "sedentario")
+            {
+                FactorActividad = 1.2;
+            }
+            else if (Seleccion == "ligero")
+            {
+                FactorActividad = 1.375;
+            }
+            else if (Seleccion == "moderado")
+            {
+                FactorActividad = 1.55;
+            }
+            else if (Seleccion == "intenso")
+            {
+                FactorActividad = 1.725;
+            }
+            else if (Seleccion == "muy_intenso")
+            {
+                FactorActividad = 1.9;
+            }
+
+            // Formula para cada genero
+            if (Convert.ToBoolean(Genero))
+            {
+                // True = Masculino
+                tmb = 66 + (13.7 * peso) + (5 * altura) - (6.8 * edad);              
+            }
+            else
+                // False = Femenino
+                tmb = 655 + (9.6 * peso) + (1.8 * altura) - (4.7 * edad);
+
+            // Calorias Totales
+
+            TotalCalorias = FactorActividad * tmb;
+
+            i = HB.AgregarRegistroHarris(Convert.ToString(FactorActividad), Convert.ToString(tmb),Convert.ToString(TotalCalorias),Convert.ToString(today),Correo);
+            
+
+            TempData["Usuario"] = Correo;
+            TempData["Calorias_nueva"] = TotalCalorias.ToString();
+            TempData.Keep();
+            return RedirectToAction("Dashboard");
 
         }
 
