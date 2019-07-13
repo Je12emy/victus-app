@@ -290,6 +290,120 @@ namespace Capa_Datos
 
 
         #endregion
+
+        #region Entidad Dieta
+        public int AgregarDieta(string CorreoCliente, string FechaDieta, string CodigoHarris, string Objetivo) {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+
+            int i;
+
+            sql_command = method.GetCommand();
+
+
+
+            sql_command.Parameters.Add("@CorreoCliente", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@FechaDieta", SqlDbType.DateTime);
+            sql_command.Parameters.Add("@CodigoHarris", SqlDbType.Int);
+            sql_command.Parameters.Add("@Objetivo", SqlDbType.NVarChar);
+        
+
+
+            sql_command.CommandText = "INSERT INTO Dieta Values(@CorreoCliente, @FechaDieta, @CodigoHarris, @Objetivo)";
+
+            sql_command.Parameters[0].Value = CorreoCliente;
+            sql_command.Parameters[1].Value = FechaDieta;
+            sql_command.Parameters[2].Value = CodigoHarris;
+            sql_command.Parameters[3].Value = Objetivo;
+
+
+            i = method.ExecCommand(sql_command);
+            return i;
+        }
+        public DataTable ObtenerUltimaDieta(string CorreoCliente) {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.CommandText = "Select Max(FechaDieta) as UltimaDieta from Dieta Where CorreoCliente = @Correo";
+            sql_command.Parameters[0].Value = CorreoCliente;
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        public DataTable ObtenerDieta(string CorreoCliente, string FechaDieta) {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+            sql_command.CommandText = "SELECT * FROM Dieta WHERE CorreoCliente = @Correo AND FechaDieta = @Fecha";
+            sql_command.Parameters[0].Value = CorreoCliente;
+            sql_command.Parameters[1].Value = FechaDieta;
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+
+        #endregion
+
+        #region Entidad-DietaRelacion
+        public int AgregarRelacion(string CodigoDieta,  string CodigoAlimento) {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+            int i;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@CodigoDieta", SqlDbType.Int);
+            sql_command.Parameters.Add("@CodigoAlimento", SqlDbType.Int);
+
+            sql_command.CommandText = "INSERT INTO RelacionAlimentos Values(@CodigoDieta, @CodigoAlimento)";
+            sql_command.Parameters[0].Value = CodigoDieta;
+            sql_command.Parameters[1].Value = CodigoAlimento;
+
+            i = method.ExecCommand(sql_command);
+            return i;
+        }
+        #endregion
+
+        #region Entidad Catalogo Alimentos
+        public DataTable ObtenerCatalogoAlimentos() {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+            
+            sql_command.CommandText = "SELECT * FROM CatalogoAlimentos";
+         
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        public DataTable ObtenerDietaCompleta(string CorreoCliente, string CodigoDieta) {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@CorreoCliente", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@CodigoDieta", SqlDbType.Int);
+            sql_command.CommandText = "EXEC GetDieta @CorreoCliente, @CodigoDieta";
+
+            sql_command.Parameters[0].Value = CorreoCliente;
+            sql_command.Parameters[1].Value = CodigoDieta;
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        #endregion
     }
 }
 

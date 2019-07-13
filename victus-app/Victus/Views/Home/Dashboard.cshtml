@@ -195,6 +195,42 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid main_content">
+        <div class="jumbotron bg-transparent">
+            <div class="row">
+                <div class="col-12">
+                    @{
+                        var ListaAlimentos = ViewData["ListaAlimentos"] as List<string>;
+                        var ListaCalorias = ViewData["ListaCalorias"] as List<string>;
+                        <table>
+
+
+                            @for (int i = 0; i < ListaAlimentos.Count; i++)
+                            {
+                                <tr>
+                                    <td> @ListaAlimentos[i].ToString()</td>
+                                    <td> @ListaCalorias[i].ToString() </td>
+                                </tr>
+                            }
+
+
+
+
+                        </table>
+
+                    }
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    <div class="btn_sandwich">
+        @Html.ActionLink("Mi Dieta", "MiDieta", "", new { @class = "dashboard_btn" })
+    </div>
+</div>
 
 </body>
 </html>

@@ -128,5 +128,71 @@ namespace Capa_Logica
             return i;
         }
         #endregion
+
+        #region Entidad Dieta
+        public int AgregarDieta(string CorreoCliente, string FechaDieta, string CodigoHarris, string Objetivo)
+        {
+            
+            int i;
+            acceso_datos datos = new acceso_datos();
+
+
+
+            i = datos.AgregarDieta(CorreoCliente, FechaDieta, CodigoHarris, Objetivo);
+            return i;
+        }
+        public DataTable ObtenerUltimaDieta(string CorreoCliente)
+        {
+            acceso_datos datos = new acceso_datos();
+          
+            DataTable table;
+            table = datos.ObtenerUltimaDieta(CorreoCliente);
+            return table;
+        }
+        public DataTable ObtenerDieta(string CorreoCliente, string FechaDieta)
+        {
+            acceso_datos datos = new acceso_datos();
+            DataTable table;
+          
+
+
+            table = datos.ObtenerDieta(CorreoCliente, FechaDieta);
+            return table;
+        }
+
+        #endregion
+
+        #region Entidad-DietaRelacion
+        public int AgregarRelacion(string CodigoDieta, string CodigoAlimento)
+        {
+            
+            int i;
+            acceso_datos datos = new acceso_datos();
+
+
+            i = datos.AgregarRelacion(CodigoDieta, CodigoAlimento);
+            return i;
+        }
+        #endregion
+
+        #region Entidad Catalogo Alimentos
+        public DataTable ObtenerCatalogoAlimentos()
+        {
+            acceso_datos datos = new acceso_datos();
+            DataTable table;
+
+
+            table = datos.ObtenerCatalogoAlimentos();
+            return table;
+        }
+        public DataTable ObtenerDietaCompleta(string CorreoCliente, string CodigoDieta)
+        {
+            acceso_datos datos = new acceso_datos();
+            DataTable table;
+
+            table = datos.ObtenerDietaCompleta(CorreoCliente, CodigoDieta);
+            return table;
+        }
+        #endregion
     }
 }

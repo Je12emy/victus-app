@@ -77,15 +77,18 @@ namespace Victus.Controllers
         public ActionResult Dashboard() {
             Cliente c = new Cliente();
             HarrisBen HB = new HarrisBen();
+            Dieta d = new Dieta();
             string _Usuario;
             string _Genero;
             DataTable ultimo_registro;
             DataTable Registro;
             String FechaUltimoRegistro;
 
-
+            // Informacion Inicial.
             if (TempData.ContainsKey("Usuario") || TempData.ContainsKey("Genero"))
             {
+                
+
                 _Usuario = TempData["Usuario"].ToString();
                 _Genero = TempData["Genero"].ToString();
 
@@ -127,6 +130,29 @@ namespace Victus.Controllers
                 {
                     ViewBag.IMC_nueva = TempData["Calorias_nueva"];
                 }
+
+                string CodigoDieta;
+                List<string> ListaAlimentos = new List<string>();
+                List<string> ListaCalorias = new List<string>();
+
+                Registro = d.ObtenerUltimaDieta(_Usuario);
+                FechaUltimoRegistro = Registro.Rows[0][0].ToString();
+
+                Registro = d.ObtenerDieta(_Usuario,FechaUltimoRegistro);
+                CodigoDieta = Registro.Rows[0][0].ToString();
+
+                Registro = d.ObtenerDietaCompleta(_Usuario,CodigoDieta);
+
+                for (int i = 0; i < Registro.Rows.Count; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine(Registro.Rows[i][0].ToString());
+                    ListaAlimentos.Add(Registro.Rows[i][0].ToString());
+                    ListaCalorias.Add(Registro.Rows[i][1].ToString());
+                }
+                ViewData["ListaAlimentos"] = ListaAlimentos;
+                ViewData["ListaCalorias"] = ListaCalorias;
+                
+
 
                 return View();
             }
@@ -298,8 +324,87 @@ namespace Victus.Controllers
             TempData["Calorias_nueva"] = TotalCalorias.ToString();
             TempData.Keep();
             return RedirectToAction("Dashboard");
+        }
+        // Mi Dieta
+        [HttpGet]
+        public ActionResult MiDieta() {
+            TempData.Keep();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult MiDieta(Dieta d) {
+            if (ModelState.IsValid)
+            {
+                string seleccion = d.objetivo.ToString();
+                HarrisBen Calorias = new HarrisBen();
+                DateTime FechaActual = DateTime.Now;
+                string Usuario;
+                string Fecha;                
+                DataTable Tabla;
+                string CaloriasTotales;
+                string CodigoHarrisBen;
+                int Resultado;
 
+                Usuario = TempData["Usuario"].ToString();
+                Tabla = Calorias.BuscarUltimoRegistroHarris(Usuario);
+                Fecha = Tabla.Rows[0][0].ToString();
+                Tabla = Calorias.BuscarRegistroHarris(Usuario,Fecha);
+
+                // Capturar los Datos para relacionar,
+                CaloriasTotales = Tabla.Rows[0][3].ToString();
+                CodigoHarrisBen = Tabla.Rows[0][0].ToString();
+
+                // Datos para insertar el registro.
+                Fecha = FechaActual.ToString();
+                Resultado = d.AgregarDieta(Usuario, Fecha, CodigoHarrisBen,seleccion );
+
+                // Obtener la dieta mas reciente
+                string CodigoDieta;
+                Tabla = d.ObtenerUltimaDieta(Usuario);
+                Fecha = Tabla.Rows[0][0].ToString();
+                Tabla = d.ObtenerDieta(Usuario, Fecha);
+                CodigoDieta = Tabla.Rows[0][0].ToString();
+                TempData["CodigoDieta"] = CodigoDieta;
+
+                // Ajustar el nivel calorica
+                if (seleccion.Equals("bajar"))
+                {
+                    CaloriasTotales = Convert.ToString(Convert.ToDouble(CaloriasTotales) - 500);
+                }
+                if (seleccion.Equals("mantener"))
+                {
+                    
+                }
+                if (seleccion.Equals("subir"))
+                {
+                    CaloriasTotales = Convert.ToString(Convert.ToDouble(CaloriasTotales) + 500);
+                }
+
+                // Obtener el catalogo de alimentos.
+                Tabla = d.ObtenerCatalogoAlimentos();
+                double ContadorCalorias = 0;
+                string CodigoAlimento;
+                // Ciclo para empezar a asociar las comidas a la dieta.
+                Random r = new Random();
+                int Indice;
+
+
+                while (ContadorCalorias < Convert.ToDouble(CaloriasTotales))
+                {
+                    ContadorCalorias = ContadorCalorias + Convert.ToDouble(Tabla.Rows[0][2]);
+                    Indice = r.Next(0, Tabla.Rows.Count);
+                    CodigoAlimento = Tabla.Rows[Indice][0].ToString();
+                    d.AgregarRelacion(CodigoDieta, CodigoAlimento);
+                }
+                
+                return RedirectToAction("Dashboard");
+            }
+            else
+                return View();
+
+
+        }
+           
         }
 
     }
-}
