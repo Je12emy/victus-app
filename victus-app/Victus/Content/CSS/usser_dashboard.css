@@ -1,7 +1,12 @@
 ﻿body {
     font-family: sans-serif;
 }
-
+.volver_btn {
+    top: 0%;
+    left: 0%;
+    transform: translate(50%, 50%);
+    position: absolute;
+}
 .main_content {
     background: #34495e;
     box-shadow: 4px 4px 30px 0px rgba(50, 50, 50, 0.26);
@@ -13,9 +18,11 @@
 
 a, u {
     text-decoration: none;
+    color: inherit;
+    transition: 0.25s;
 }
 
-    a:hover, u:hover {
+    a:hover {
         color: white;
         text-decoration: none;
         cursor: pointer;

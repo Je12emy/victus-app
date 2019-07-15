@@ -10,22 +10,15 @@
     <link href="~/Content/BootStrap/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/BootStrap/bootstrap-grid.min.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
-    <link href="~/Content/CSS/Dashboard.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/4e9acb012c.js"></script>
+    <link href="~/Content/CSS/usser_dashboard.css" rel="stylesheet" />
     <title>Dashboard</title>
-    <style>
-        a, u {
-            text-decoration: none;
-        };
 
-        a:hover, u:hover {
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        </style>
 </head>
 <body>
+    <div class="volver_btn">
+        <a href='@Url.Action("Index", "Home")'><i class="fas fa-arrow-circle-left fa-2x"></i></a>
+    </div>
     <div class="container-fluid main_content">
         <div class="jumbotron bg-transparent">
             <div class="row">
@@ -34,33 +27,36 @@
                 <!--Styling Bootstrap cards source: https://mdbootstrap.com/docs/jquery/components/cards/-->
 
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="card flex-row flex-wrap shadow-lg">
-                        <div class="card-header border-0 bg-transparent">
+                    <div class="card flex-row flex-wrap shadow-lg card_parent">
+
+                        <div class="card-header border-0 bg-transparent card_child_img">
                             <img src="~/Content/Resources/bmi.png" alt="">
                         </div>
-                        <div class="card-block px-2">
+
+
+                        <div class="card-block px-2 card_child_text">
                             <br>
                             <h4 class="card-title text-center">IMC</h4>
                             <p class="card-text display-2 text-center">
                                 @{
-                                    if (ViewBag.Agua_Nueva != null)
+                                    if (ViewBag.IMC_nueva != null)
                                     {
                                         if (Convert.ToDouble(ViewBag.IMC) < Convert.ToDouble(ViewBag.IMC_Nueva))
                                         {
-                                            <span style="color:green"> @ViewBag.IMC_Nueva </span>
+                                            <span style="color:green"> @ViewBag.IMC_Nueva</span>
                                         }
                                         if (Convert.ToDouble(ViewBag.IMC) > Convert.ToDouble(ViewBag.IMC_Nueva))
                                         {
-                                            <span style="color:red"> @ViewBag.IMC_Nueva </span>
+                                            <span style="color:red"> @ViewBag.IMC_Nueva</span>
                                         }
                                         else if (Convert.ToDouble(ViewBag.IMC) == Convert.ToDouble(ViewBag.IMC_Nueva))
                                         {
-                                            <span style="color:gray"> @ViewBag.IMC_Nueva </span>
+                                            <span style="color:gray"> @ViewBag.IMC_Nueva</span>
                                         }
                                     }
                                     else
                                     {
-                                        <span>  @ViewBag.IMC</span>
+                                        <span>  @ViewBag.IMC </span>
                                     }
                                 }
                             </p>
@@ -69,13 +65,14 @@
                 </div>
 
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="card flex-row flex-wrap shadow-lg">
-                        <div class="card-header border-0 bg-transparent">
+                    <div class="card flex-row flex-wrap shadow-lg card_parent">
+                        <div class="card-header border-0 bg-transparent card_child_img">
                             <img src="~/Content/Resources/Water-icon.png" alt="">
                         </div>
-                        <div class="card-block px-2">
+
+                        <div class="card-block px-2 card_child_text">
                             <br>
-                            <h4 class="card-title text-center">Agua Recomendada</h4>
+                            <h4 class="card-title text-center">Vasos de Agua</h4>
                             <p class="card-text display-2 text-center">
                                 @{
                                     if (ViewBag.Agua_Nueva != null)
@@ -95,7 +92,7 @@
                                     }
                                     else
                                     {
-                                        <span>  @ViewBag.Agua</span>
+                                        <span>  @ViewBag.Agua </span>
                                     }
                                 }
                             </p>
@@ -103,6 +100,9 @@
                     </div>
                 </div>
             </div>
+
+
+
 
 
         </div>
@@ -114,20 +114,76 @@
     <!-- Aca contenido acerca de los datos de arriba, explicativo -->
     <div class="container mt-5">
         <div class="row mt-2 mb-2">
-            <div class="col-6">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <h1>El IMC </h1>
                 <p>
-                    What is Lorem Ipsum?
+                    El índice de masa corporal, o IMC, es una métrica utilizada para estimar la cantidad de grasa corporal que tiene una persona. Es una medida de peso relativo a la masa y altura de un adulto.
+                </p>
 
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    Why do we use it?
+                <p>
+                    El índice de masa corporal es un método utilizado para estimar la grasa corporal total. Esto ayuda a determinar si su peso está dentro del rango normal, o por el contrario tienes sobrepeso o delgadez.
+                </p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-left">Indice </th>
+                            <th scope="col" class="text-center"> Tu Rango </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left"> 15 o menos </td>
+                            <td class="text-center"> Delgadez muy severa </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"> 15 - 15.9 </td>
+                            <td class="text-center">
+                                Delgadez severa
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"> 16 - 18.4 </td>
+                            <td class="text-center"> Delgadez </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left">
+                                18.5 - 24-6
+                            </td>
+                            <td class="text-center">
+                                Peso Saludable
+                            </td>
 
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                        <tr>
+                            <td class="text-left"> 25 - 29.9 </td>
+                            <td class="text-center"> Sobrepeso </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"> 30 - 34.9 </td>
+                            <td class="text-center"> Obesidad Moderada </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"> 35-39.9 </td>
+                            <td class="text-center"> Obesidad severa </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"> 40 o mas </td>
+                            <td class="text-center"> Obesidad muy severa (obesidad mórbida) </td>
+                        </tr>
 
-                    Where does it come from?
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <h1> Cuanta Agua debo tomar </h1>
+                <p>
+                    Una de las recomendaciones más persistentes es la de ‘bebe mucha agua‘. Lo escuchas de médicos, nutricionistas, entrenadores… parece que hay división de opiniones en todo, menos en la idea de que debemos estar constantemente bebiendo.
+                </p>
 
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                <blockquote>
+                    «Tu cuerpo es 60% agua, debes beber al menos 2-3 litros de agua al día, al menos 8 vasos de agua al día, tu orina debe ser muy clara…» ¿Te suenan estos mensajes?
+                </blockquote>
+                <p>
+                    Son tan repetidos que los damos por ciertos. El resultado son botellas de agua en todos los puestos de trabajo, Gatorade cada kilómetro en las carreras populares, todo el mundo con su botella en el gimnasio… y por supuesto, una industria muy contenta que nos vende agua embotellada a precio de oro.
                 </p>
             </div>
         </div>
@@ -139,14 +195,14 @@
 
             <div class="row mt-4">
                 <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card flex-row flex-wrap shadow-lg">
-                        <div class="card-header border-0 bg-transparent">
+                    <div class="card flex-row flex-wrap shadow-lg card_parent">
+                        <div class="card-header border-0 bg-transparent card_child_img">
                             <img src="~/Content/Resources/calories.png" alt="">
                         </div>
-                        <div class="card-block px-4 w-100" style="position:absolute">
+                        <div class="card-block px-4 w-100 card_child_text">
                             <br>
                             <h4 class="card-title text-center">Calorias</h4>
-                            <p class="card-text display-2 text-center">
+                            <p class="card-text display-2 text-center" id="txt_calorias">
                                 @{
                                     if (ViewBag.Calorias_nueva != null)
                                     {
@@ -185,52 +241,157 @@
     </div>
     <div class="container mt-5">
         <div class="row mt-2 mb-2">
-            <div class="col-6">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <h1> Las Calorias </h1>
                 <p>
-                    What is Lorem Ipsum?
-
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    Why do we use it?                  
+                    Las calorías son la cantidad de calor necesaria para elevar la temperatura de un gramo de agua pura un grado centígrado a una presión de una atmósfera.
+                </p>
+                <p>
+                    En nuestro día a día necesitamos un aporte continuo de energía para poder llevar a cabo todas nuestras funciones: para el buen funcionamiento del corazón, del sistema nervioso, para realizar el trabajo muscular, para desarrollar una actividad física, para los procesos biosintéticos relacionados con el crecimiento para desarrollar una actividad física, para la reproducción y reparación de tejidos y también para mantener la temperatura corporal.
                 </p>
             </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <h2> ¿Las calorias son malas? </h2>
+                <p> Las calorías no son malas. Tu cuerpo necesita calorías para tener energía. Sin embargo, comer demasiadas calorías y no quemar lo suficiente de estas a través del ejercicio físico puede hacer que aumentes de peso. </p>
+                </div>
         </div>
     </div>
     <div class="container-fluid main_content">
         <div class="jumbotron bg-transparent">
             <div class="row">
                 <div class="col-12">
+
                     @{
-                        var ListaAlimentos = ViewData["ListaAlimentos"] as List<string>;
-                        var ListaCalorias = ViewData["ListaCalorias"] as List<string>;
-                        <table>
-
-
-                            @for (int i = 0; i < ListaAlimentos.Count; i++)
-                            {
-                                <tr>
-                                    <td> @ListaAlimentos[i].ToString()</td>
-                                    <td> @ListaCalorias[i].ToString() </td>
-                                </tr>
-                            }
-
-
-
-
-                        </table>
+                        if (ViewData["ListaAlimentos"] != null && ViewData["ListaCalorias"] != null)
+                        {
+                            var ListaAlimentos = ViewData["ListaAlimentos"] as List<string>;
+                            var ListaCalorias = ViewData["ListaCalorias"] as List<string>;
+                            <div class="table-responsive">
+                                <table class="table table-light table-hover ">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col"> # Comida </th>
+                                            <th scope="col"> Alimento </th>
+                                            <th scope="col"> Calorias </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < ListaAlimentos.Count; i++)
+                                        {
+                                            <tr>
+                                                <th scope="col"> @Convert.ToInt16(i + 1) </th>
+                                                <td> @ListaAlimentos[i].ToString()</td>
+                                                <td> @ListaCalorias[i].ToString() </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="display-2"> @Html.Raw("Aun no tienes Dieta.") </span>
+                        }
 
                     }
+
                 </div>
+
             </div>
 
+        </div>
+        <div class="btn_sandwich">
+            @Html.ActionLink("Mi Dieta", "MiDieta", "", new { @class = "dashboard_btn" })
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row mt-2 mb-2">
+            <div class="col-12">
+                <h1> Una Buena Dieta </h1>
+                <p>
+                    Hoy en día hay cientos de tipos de dieta que tienen como objetivo final el reducir el peso de la persona que decide seguirla. Dentro de ellas, hay muchas que son realmente perjudiciales y dañinas para el organismo, mientras que hay otras que buscan la ingesta equilibrada de todo tipo de nutrientes y son realmente saludables para el cuerpo. La dieta balanceada o equilibrada te ayudará a perder esos kilos de más de una manera sana y eficaz.
+                </p>
+                <p>
+                    Cuando se habla de dieta balanceada se hace referencia a un tipo de alimentación que contiene los nutrientes que el organismo necesita para poder funcionar perfectamente. Estos nutrientes esenciales son las proteínas, los hidratos de carbono, las vitaminas, los minerales y el agua.
+                </p>
+                <p>
+                    Es muy importante seguir un tipo de dieta balanceada totalmente saludable ya que te va ayudar a prevenir enfermedades como el sobrepeso, la hipertensión, la diabetes o la osteoporosis.
+                </p>
+                <p>
+                    Además de esto, una alimentación balanceada permite a la persona que la sigue tener una mejor calidad de vida con todo lo que eso conlleva.
+                </p>
 
+            </div>
+        </div>
+    </div>
+    <!-- Aca contenido acerca de los datos de arriba, explicativo -->
+    <div class="container-fluid main_content">
+        <div class="jumbotron bg-transparent">
+            <div class="row">
+                <div class="col-12">
 
+                    @{
+                        if (ViewData["ListaMedidas"] != null && ViewData["ListaConcepto"] != null)
+                        {
+                            var ListaMedidas = ViewData["ListaMedidas"] as List<string>;
+                            var ListaConcepto = ViewData["ListaConcepto"] as List<string>;
+                            <div class="table-responsive">
+                                <table class="table table-light table-hover ">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col"> Concepto </th>
+                                            <th scope="col"> Medida </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < ListaMedidas.Count; i++)
+                                        {
+                                            <tr>
+                                                <td> @ListaConcepto[i].ToString()</td>
+                                                <td> @ListaMedidas[i].ToString() </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="display-2"> @Html.Raw("Aun no has ingresado tus medidas.") </span>
+                        }
 
+                    }
+
+                </div>
+
+            </div>
 
         </div>
-    <div class="btn_sandwich">
-        @Html.ActionLink("Mi Dieta", "MiDieta", "", new { @class = "dashboard_btn" })
+        <div class="btn_sandwich">
+            @Html.ActionLink("Mis Medidas", "Medidas", "", new { @class = "dashboard_btn" })
+        </div>
     </div>
-</div>
+    @*<div class="container mt-5">
+        <div class="row mt-2 mb-2">
+            <div class="col-6">
+                <p>
+                    What is Lorem Ipsum?
+
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Why do we use it?
+
+                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+
+                    Where does it come from?
+
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                </p>
+            </div>
+        </div>
+    </div>*@
+    <!-- Aca contenido acerca de los datos de arriba, explicativo -->
 
 </body>
 </html>

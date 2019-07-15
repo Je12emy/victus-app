@@ -1,0 +1,40 @@
+﻿@model Victus.Models.Medidas
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/CSS/datos.css" rel="stylesheet" />
+    <title>Mis Medidas</title>
+</head>
+<body>
+    <div class="volver_btn">
+        <a href='@Url.Action("Dashboard", "Home")'><i class="fas fa-arrow-circle-left fa-5x"></i></a>
+    </div>
+
+    <div class="box">
+        @using (@Html.BeginForm())
+            {
+            @Html.ValidationSummary()
+            <h1> Ingresa tus Medidas </h1>
+
+            @Html.TextBoxFor(x => x.BicepIzquierdo, new { @class = "input_helper", @placeholder = "Bicep Izquierdo", @type = "number", @Value = "", @step = "0.2" })
+            @Html.TextBoxFor(x => x.BicepDerecho, new { @class = "input_helper", @placeholder = "Bicep Derecho", @type = "number", @Value = "", @step = "0.2" })
+            @Html.TextBoxFor(x => x.Abdomen, new { @class = "input_helper", @placeholder = "Abdome", @type = "number", @Value = "", @step = "0.2" })
+            @Html.TextBoxFor(x => x.CuadricepIzquierdo, new { @class = "input_helper", @placeholder = "Cuadricep Izquierdo", @type = "number", @Value = "", @step = "0.2" })
+            @Html.TextBoxFor(x => x.CuadricepDerecho, new { @class = "input_helper", @placeholder = "Cuadricep Derecho", @type = "number", @Value = "", @step = "0.2" })
+            @Html.TextBoxFor(x => x.PantorrillaIzquierda, new { @class = "input_helper", @placeholder = "Pantorrilla Izquierda", @type = "number", @Value = "", @step = "0.2" })
+            @Html.TextBoxFor(x => x.PantorrillaDerecha, new { @class = "input_helper", @placeholder = "Pantorrilla Derecha", @type = "number", @Value = "", @step = "0.2" })
+
+            <input type="submit" value="Guardar" />
+
+        }
+        <input type="reset" value="Limpiar" class="limpiar">
+    </div>
+</body>
+</html>

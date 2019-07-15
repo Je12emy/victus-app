@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -133,6 +134,7 @@
     <Content Include="Content\CSS\login.css" />
     <Content Include="Content\CSS\registration.css" />
     <Content Include="Content\CSS\PruebaCalorica.css" />
+    <Content Include="Content\CSS\usser_dashboard.css" />
     <Content Include="Content\JS\jquery-3.4.1.min.js" />
     <Content Include="Content\JS\radio_buttons.js" />
     <Content Include="Content\JS\registration_steps.js" />
@@ -160,6 +162,7 @@
     </Compile>
     <Compile Include="Models\Dieta.cs" />
     <Compile Include="Models\HarrisBen.cs" />
+    <Compile Include="Models\Medidas.cs" />
     <Compile Include="Models\ModeloDatos.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Persona.cs" />
@@ -187,6 +190,7 @@
     <Content Include="Views\Home\MisDatos.cshtml" />
     <Content Include="Views\Home\Factor_de_Actividad.cshtml" />
     <Content Include="Views\Home\MiDieta.cshtml" />
+    <Content Include="Views\Home\Medidas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

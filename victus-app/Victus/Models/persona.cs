@@ -40,7 +40,7 @@ namespace Victus.Models
                 return true;
             }
             else
-                System.Diagnostics.Debug.WriteLine("Retornando False" + correo.ToString() + usser.Rows[0][0].ToString() + password.ToString() + usser.Rows[0][1].ToString());
+                System.Diagnostics.Debug.WriteLine("Retornando False");
             return false;
         }
 

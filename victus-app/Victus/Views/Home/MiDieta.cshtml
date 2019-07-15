@@ -10,41 +10,78 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title> Mi Dieta </title>
-    @*<link href="~/Content/CSS/PruebaCalorica.css" rel="stylesheet" /*@>
-    @*<script src="~/Content/JS/radio_buttons.js"></script>*@
+    <link href="~/Content/CSS/PruebaCalorica.css" rel="stylesheet" />
+    <script src="~/Content/JS/radio_buttons.js"></script>
     @*<script src="~/Content/JS/transition.js"></script>*@
     <script src="https://kit.fontawesome.com/4e9acb012c.js"></script>
+    <style>
+        .limpiar {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #ecf0f1 !important;
+            padding: 14px 20px;
+            width: 220px;
+            outline: none;
+            border-radius: 24px;
+            transition: 0.25s;
+            color: white;
+            cursor: pointer;
+        }
+
+            .limpiar:hover {
+                color: #2c3e50 !important;
+                background: #ecf0f1 !important;
+            }
+
+        a, u {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.25s;
+        }
+
+            a:hover {
+                color: white;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .volver_btn {
+            top: 0%;
+            left: 0%;
+            transform: translate(50%, 50%);
+            position: absolute;
+        }
+    </style>
 </head>
 <body>
     
-        <div class="volver_btn">
+        @*<div class="volver_btn">
             <a href='@Url.Action("Dashboard", "Home")'><i class="fas fa-arrow-circle-left fa-5x"></i></a>
-        </div>
+        </div>*@
         <div class="box">
 
             <h1> Mi Dieta </h1>
             @using (Html.BeginForm())
             {
                 <div class="button_radio" onclick="SelectThis(this)">
-                    @Html.Label("Subir peso", new { @for = "subir" })
-                    @Html.RadioButtonFor(x => x.objetivo, "subir", new { @id = "subir", @class = "radio" })
+                    @Html.Label("Subir peso", new { @for = "subirPeso" })
+                    @Html.RadioButtonFor(x => x.objetivo, "subir", new { @id = "subirPeso", @class = "radio" })
                 </div>
 
                 <div class="button_radio" onclick="SelectThis(this)">
-                    @Html.Label("Bajar Peso", new { @for = "bajar" })
-                    @Html.RadioButtonFor(x => x.objetivo, "bajar", new { @id = "bajar", @class = "radio" })
+                    @Html.Label("Bajar Peso", new { @for = "bajarPeso" })
+                    @Html.RadioButtonFor(x => x.objetivo, "bajar", new { @id = "bajarPeso", @class = "radio" })
                 </div>
 
                 <div class="button_radio" onclick="SelectThis(this)">
-                    @Html.Label("Mantener peso", new { @for = "mantener" })
-                    @Html.RadioButtonFor(x => x.objetivo, "mantener", new { @id = "mantener", @class = "radio" })
-                </div>
-
-               
+                    @Html.Label("Mantener peso", new { @for = "mantenerPeso" })
+                    @Html.RadioButtonFor(x => x.objetivo, "mantener", new { @id = "mantenerPeso", @class = "radio" })
+                </div>              
                 <input type="submit" value="Actualizar">
             }
-
-
         </div>
     
 </body>

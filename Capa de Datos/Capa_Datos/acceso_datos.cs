@@ -404,6 +404,90 @@ namespace Capa_Datos
             return table;
         }
         #endregion
+        #region Medidas
+
+        public int AgregarMedidas(string FechaMedida, string CorreoCliente, string BicepIzquierdo, string BicepDerecho, string Abdomen, string CuadricepIzquierdo, string CuadricepDerecho, string PantorrillaIzquierda, string PantorrillaDerecha)
+        {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+            int i;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@FechaMedida", SqlDbType.DateTime);
+            sql_command.Parameters.Add("@CorreoCliente", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@BicepIzquierdo", SqlDbType.Float);
+            sql_command.Parameters.Add("@BicepDerecho", SqlDbType.Float);
+            sql_command.Parameters.Add("@Abdomen", SqlDbType.Float);
+            sql_command.Parameters.Add("@CuadricepIzquierdo", SqlDbType.Float);
+            sql_command.Parameters.Add("@CuadricepDerecho", SqlDbType.Float);
+            sql_command.Parameters.Add("@PantorrillaIzquierda", SqlDbType.Float);
+            sql_command.Parameters.Add("@PantorrillaDerecha", SqlDbType.Float);
+
+            sql_command.CommandText = "INSERT INTO Medida Values(@FechaMedida,@CorreoCliente, @BicepIzquierdo, @BicepDerecho, @Abdomen, @CuadricepIzquierdo, @CuadricepDerecho, @PantorrillaIzquierda, @PantorrillaDerecha)";
+
+            sql_command.Parameters[0].Value = FechaMedida;
+            sql_command.Parameters[1].Value = CorreoCliente;
+            sql_command.Parameters[2].Value = BicepIzquierdo;
+            sql_command.Parameters[3].Value = BicepDerecho;
+            sql_command.Parameters[4].Value = Abdomen;
+            sql_command.Parameters[5].Value = CuadricepIzquierdo;
+            sql_command.Parameters[6].Value = CuadricepDerecho;
+            sql_command.Parameters[7].Value = PantorrillaIzquierda;
+            sql_command.Parameters[8].Value = PantorrillaDerecha;
+
+            i = method.ExecCommand(sql_command);
+            return i;
+        }
+        public DataTable ObtenerUltimaMedida(string CorreoCliente)
+        {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.CommandText = "Select Max(FechaMedida) as UltimaMedida from Medida Where CorreoCliente = @Correo";
+            sql_command.Parameters[0].Value = CorreoCliente;
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        public DataTable ObtenerMedida(string CorreoCliente, string FechaDieta)
+        {
+            metodo_datos method = new metodo_datos();
+            DataTable table;
+            SqlCommand sql_command;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+            sql_command.CommandText = "SELECT * FROM Medida WHERE CorreoCliente = @Correo AND FechaMedida = @Fecha";
+            sql_command.Parameters[0].Value = CorreoCliente;
+            sql_command.Parameters[1].Value = FechaDieta;
+
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+        public DataTable ObtenerMedicionCompleta(string CodigoMedida) {
+            metodo_datos method = new metodo_datos();
+            SqlCommand sql_command;
+            DataTable table;
+
+            sql_command = method.GetCommand();
+
+            sql_command.Parameters.Add("@CodigoMedida", SqlDbType.Int);
+            sql_command.CommandText =   "SELECT medicion.BicepIzquierdo, medicion.BicepDerecho, medicion.Abdomen, medicion.CuadricepIzquierdo," + 
+                                        "medicion.CuadricepDerecho, medicion.PantorrillaIzquierda, " +
+	                                    "medicion.PantorrillaDerecha FROM Medida AS medicion WHERE CodigoMedida =  @CodigoMedida";
+            sql_command.Parameters[0].Value = CodigoMedida;
+            table = method.ExecSearch(sql_command);
+            return table;
+        }
+
+        #endregion
     }
 }
 

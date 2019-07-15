@@ -194,5 +194,43 @@ namespace Capa_Logica
             return table;
         }
         #endregion
+        #region Medidas
+
+        public int AgregarMedidas(string FechaMedida, string CorreoCliente, string BicepIzquierdo, string BicepDerecho, string Abdomen, string CuadricepIzquierdo, string CuadricepDerecho, string PantorrillaIzquierda, string PantorrillaDerecha)
+        {
+            acceso_datos Datos = new acceso_datos();
+            int i;
+
+
+            i = Datos.AgregarMedidas(FechaMedida, CorreoCliente, BicepIzquierdo, BicepDerecho, Abdomen, CuadricepIzquierdo, CuadricepDerecho, PantorrillaIzquierda, PantorrillaDerecha);
+            return i;
+        }
+        public DataTable ObtenerUltimaMedida(string CorreoCliente)
+        {
+            acceso_datos Datos = new acceso_datos();            
+            DataTable table;
+
+            table = Datos.ObtenerUltimaMedida(CorreoCliente);
+            return table;
+        }
+        public DataTable ObtenerMedida(string CorreoCliente, string FechaDieta)
+        {
+            acceso_datos Datos = new acceso_datos();
+            DataTable table;
+           
+            table = Datos.ObtenerMedida(CorreoCliente, FechaDieta);
+            return table;
+        }
+        public DataTable ObtenerMedicionCompleta(string CodigoMedida)
+        {
+            acceso_datos Datos = new acceso_datos();
+            DataTable table;
+
+
+            table = Datos.ObtenerMedicionCompleta(CodigoMedida);
+            return table;
+        }
+
+        #endregion
     }
 }

@@ -2,7 +2,9 @@
 
 body {
     font-family: sans-serif;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../Resources/checking-checklist-daily-report-1001752.jpg") !important;
+    Background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../Resources/checking-checklist-daily-report-1001752.jpg") !important;
+    /*linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../Resources/checking-checklist-daily-report-1001752.jpg") !important*/
+
 }
 
 a, u {
