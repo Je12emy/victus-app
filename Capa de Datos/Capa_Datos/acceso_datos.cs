@@ -123,7 +123,7 @@ namespace Capa_Datos
             sql_command = method.GetCommand();
 
             sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
-            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.DateTime);
 
             sql_command.CommandText = "SELECT * FROM Cliente where Correo = @Correo and FechaDatos = @Fecha";
             sql_command.Parameters[0].Value = correo;
@@ -247,7 +247,7 @@ namespace Capa_Datos
             sql_command = method.GetCommand();
 
             sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
-            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.DateTime);
 
             sql_command.CommandText = "SELECT * FROM HarrisBen where Correo = @Correo and FechaHarris = @Fecha";
             sql_command.Parameters[0].Value = correo;
@@ -342,7 +342,7 @@ namespace Capa_Datos
             sql_command = method.GetCommand();
 
             sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
-            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.DateTime);
             sql_command.CommandText = "SELECT * FROM Dieta WHERE CorreoCliente = @Correo AND FechaDieta = @Fecha";
             sql_command.Parameters[0].Value = CorreoCliente;
             sql_command.Parameters[1].Value = FechaDieta;
@@ -463,7 +463,7 @@ namespace Capa_Datos
             sql_command = method.GetCommand();
 
             sql_command.Parameters.Add("@Correo", SqlDbType.NVarChar);
-            sql_command.Parameters.Add("@Fecha", SqlDbType.NVarChar);
+            sql_command.Parameters.Add("@Fecha", SqlDbType.DateTime);
             sql_command.CommandText = "SELECT * FROM Medida WHERE CorreoCliente = @Correo AND FechaMedida = @Fecha";
             sql_command.Parameters[0].Value = CorreoCliente;
             sql_command.Parameters[1].Value = FechaDieta;
