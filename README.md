@@ -1,2 +1,2 @@
 # victus-app
-This is a small proyect for a college course.
+Victus is a web app which shows general information regarding you current health.
